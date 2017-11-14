@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05 Polylines</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+          integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+          crossorigin="" />
+    <style>
+        #mapid {
+            width: 800px;
+            height: 600px;
+            border: solid 1px #000;
+            margin: auto auto;
+        }
+    </style>
+
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+            integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+            crossorigin=""></script>
+
+</head>
+<body>
+    <h2>Map:</h2>
+    <h3>Setea el Mapa de forma centrada en Casa Rosada. [-34.608123, -58.370052]</h3>
+    <p>Setea el polyLine, sobre los multiples punteros</p>
+
+    <div id="mapid"></div>
+
+    <script>
+        var coordinates = [-34.608123, -58.370052]
+
+        var point1 = [-34.607933, -58.365044]
+        var point2 = [-34.608123, -58.370052]
+        var point3 = [-34.603686, -58.381609]
+
+        // Map Properties
+        var mymap = L.map('mapid').setView(coordinates, 15);
+
+        // Map Point Marker
+        var marker1 = L.marker(point1).addTo(mymap);
+        var marker2 = L.marker(point2).addTo(mymap);
+        var marker3 = L.marker(point3).addTo(mymap);
+
+        // Polylines
+        var points = [
+            point1,
+            point2,
+            point3
+        ];
+
+        var polylines = L.polyline(points).addTo(mymap);
+
+
+        // Set Map Instance
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.streets'
+        }).addTo(mymap);
+    </script>
+</body>
+</html>
